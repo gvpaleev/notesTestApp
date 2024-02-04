@@ -27,6 +27,7 @@ dependencies:
   serverpod_flutter: 1.2.2
   notes_client:
     path: ../notes_client
+  bloc: ^8.1.2
 
 
   # The following adds the Cupertino Icons font to your application.
