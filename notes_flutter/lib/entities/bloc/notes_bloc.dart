@@ -17,7 +17,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
         final notes = await client.notes.getAllNotes();
         emit(NewNotesState(notes: notes));
       } catch (e) {
-        add(ConnectionFailedEvent(exception: e));
+        add(ConnectionFailedEvent(exception: e as Exception));
       }
     });
     on<CreateNoteEvent>((event, emit) async {
@@ -26,7 +26,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
         add(LoadNoteEvent());
         // await _loadNotes();
       } catch (e) {
-        add(ConnectionFailedEvent(exception: e));
+        add(ConnectionFailedEvent(exception: e as Exception));
       }
     });
     on<DeleteNoteEvent>((event, emit) async {
@@ -34,7 +34,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
         await client.notes.deleteNote(event.note);
         add(LoadNoteEvent());
       } catch (e) {
-        add(ConnectionFailedEvent(exception: e));
+        add(ConnectionFailedEvent(exception: e as Exception));
       }
     });
     on<UpdateNoteEvent>((event, emit) async {
@@ -42,12 +42,13 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
         await client.notes.updateNote(event.noteOld, event.noteNew);
         add(LoadNoteEvent());
       } catch (e) {
-        add(ConnectionFailedEvent(exception: e));
+        add(ConnectionFailedEvent(exception: e as Exception));
       }
     });
     on<ConnectionFailedEvent>((event, emit) {
       emit(ErrorConnectState(exception: event.exception));
     });
+    add(LoadNoteEvent());
   }
 
   // void _connectionFailed(dynamic exception) {

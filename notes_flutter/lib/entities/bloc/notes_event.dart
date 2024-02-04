@@ -22,9 +22,9 @@ class UpdateNoteEvent extends NotesEvent {
 class LoadNoteEvent extends NotesEvent {}
 
 class ConnectionFailedEvent extends NotesEvent {
-  var exception;
+  final Exception? exception;
 
-  ConnectionFailedEvent({required dynamic this.exception});
+  ConnectionFailedEvent({required this.exception});
 }
 
   // Future<void> _loadNotes() async {

@@ -3,19 +3,21 @@ part of 'notes_bloc.dart';
 @immutable
 sealed class NotesState {
   final List<Note>? notes;
+  final Exception? exception;
 
-  const NotesState({required this.notes});
+  // var exception;
+
+  const NotesState({required this.notes, required this.exception});
 }
 
 final class NotesInitial extends NotesState {
-  const NotesInitial() : super(notes: null);
+  const NotesInitial() : super(notes: null, exception: null);
 }
 
 final class NewNotesState extends NotesState {
-  const NewNotesState({required super.notes});
+  const NewNotesState({required super.notes, super.exception});
 }
 
 final class ErrorConnectState extends NotesState {
-  var exception;
-  ErrorConnectState({required dynamic this.exception}) : super(notes: null);
+  ErrorConnectState({required super.exception}) : super(notes: null);
 }
