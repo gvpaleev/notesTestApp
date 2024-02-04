@@ -24,4 +24,17 @@ class NotesEndpoint extends Endpoint {
       orderBy: (t) => t.id,
     );
   }
+
+  Future<void> updateNote(Session session, Note noteOld, Note noteNew) async {
+    var noteFind = await Note.db.findFirstRow(
+      session,
+      where: (t) => t.text.equals(noteOld.text),
+    );
+
+    if (noteFind != null) {
+      noteFind.text = noteNew.text;
+
+      await Note.db.updateRow(session, noteFind);
+    }
+  }
 }

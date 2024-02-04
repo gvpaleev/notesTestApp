@@ -5,3 +5,4 @@ notes:
   - createNote:
   - deleteNote:
   - getAllNotes:
+  - updateNote:

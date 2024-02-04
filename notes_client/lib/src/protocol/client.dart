@@ -58,6 +58,19 @@ class EndpointNotes extends _i1.EndpointRef {
         'getAllNotes',
         {},
       );
+
+  _i2.Future<void> updateNote(
+    _i3.Note noteOld,
+    _i3.Note noteNew,
+  ) =>
+      caller.callServerEndpoint<void>(
+        'notes',
+        'updateNote',
+        {
+          'noteOld': noteOld,
+          'noteNew': noteNew,
+        },
+      );
 }
 
 class Client extends _i1.ServerpodClient {
